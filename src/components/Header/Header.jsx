@@ -1,7 +1,13 @@
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContext } from "../../context/cart"
 
 export default function Header() {
+ const {
+  cartItems
+} = useContext(CartContext);
+
  return (
   <div className='header'>
    <div className='header-logo-wrapper'>
@@ -11,6 +17,7 @@ export default function Header() {
     <button>
      <Link to='/cart'>
       <FaShoppingCart />
+      <span>{cartItems.reduce((total, item) => total + item.quantity, 0)}</span>
      </Link>
     </button>
     <button>

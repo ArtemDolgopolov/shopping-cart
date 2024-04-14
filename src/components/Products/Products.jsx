@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { CartContext } from "../../context/cart"
 
 export default function Products({ products, loading }) {
+ const { addToCart } = useContext(CartContext);
+ 
  return (
   <div>
    {loading ? (
@@ -11,6 +14,7 @@ export default function Products({ products, loading }) {
       <img src={product.image} alt={product.title} />
       <p>{product.title}</p>
       <p>$ {product.price}</p>
+      <button onClick={() => addToCart(product)}>Add to cart</button>
      </div>
     )))}
   </div>
