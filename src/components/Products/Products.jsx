@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react"
-import { CartContext } from "../../context/cart"
+import { useContext } from "react"
+import { Link } from 'react-router-dom'
+import { AppContext } from "../../context/context"
 
-export default function Products({ products, loading }) {
- const { addToCart } = useContext(CartContext);
+export default function Products() {
+ const { addToCart, loading, products } = useContext(AppContext);
  
  return (
   <div>
@@ -11,10 +12,12 @@ export default function Products({ products, loading }) {
    ) : (
     products.map((product) => (
      <div key={product.id}>
-      <img src={product.image} alt={product.title} />
-      <p>{product.title}</p>
-      <p>$ {product.price}</p>
-      <button onClick={() => addToCart(product)}>Add to cart</button>
+      <Link to={`/shopping/${product.id}`}>
+       <img src={product.image} alt={product.title} />
+       <p>{product.title}</p>
+       <p>$ {product.price}</p>
+      </Link>
+      <button onClick={() => addToCart(product)}>Add to cart</button> 
      </div>
     )))}
   </div>

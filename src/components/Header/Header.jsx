@@ -1,12 +1,12 @@
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { CartContext } from "../../context/cart"
+import { AppContext } from "../../context/context"
 
 export default function Header() {
  const {
   cartItems
-} = useContext(CartContext);
+} = useContext(AppContext);
 
  return (
   <div className='header'>

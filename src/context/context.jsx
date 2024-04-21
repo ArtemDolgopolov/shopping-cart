@@ -1,11 +1,36 @@
 import { createContext, useEffect, useState } from "react";
 
-export const CartContext = createContext();
+export const AppContext = createContext();
 
-export function CartProvider({ children }) {
+export function AppProvider({ children }) {
  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') 
   ? JSON.parse(localStorage.getItem('cartItems')) : []);
-  
+ const [products, setProducts] = useState([]);
+ const [loading, setLoading] = useState(true);
+ const [productsPerPage] = useState(5);
+ const [page, setPage] = useState(1);
+
+ const lastPage = page * productsPerPage;
+ const firstPage = lastPage - productsPerPage;
+ const currentsProducts = products.slice(firstPage, lastPage);
+
+ let paginationNumber = [];
+
+ for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
+  paginationNumber.push(i);
+ }
+
+ const handlePagination = (pageNumber) => {
+  setPage(pageNumber);
+ }
+
+ const getApiProducts = async () => {
+  const productData = await fetch('https://fakestoreapi.com/products')
+  .then((res) => res.json());
+
+   setProducts(productData);
+ }
+
  function addToCart(item) {
   const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
 
@@ -55,9 +80,25 @@ export function CartProvider({ children }) {
   if (cartItems) setCartItems(JSON.parse(cartItems));
  }, []);
 
+ useEffect(() => {
+  getApiProducts();
+  const stopLoading = setTimeout(() => setLoading(false), 3000);
+  return (() => clearTimeout(stopLoading));
+ }, [])
+
  return (
-  <CartContext.Provider
+  <AppContext.Provider
    value={{
+    products: products.slice(firstPage, lastPage),
+    loading,
+    getApiProducts,
+    productsPerPage,
+    page,
+    firstPage,
+    lastPage,
+    paginationNumber,
+    currentsProducts,
+    handlePagination,
     cartItems,
     addToCart,
     removeFromCart,
@@ -66,6 +107,6 @@ export function CartProvider({ children }) {
    }}
   >
    {children}
-  </CartContext.Provider>
+  </AppContext.Provider>
  )
 }

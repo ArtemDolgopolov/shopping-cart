@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { CartContext } from "../../context/cart";
+import { AppContext } from "../../context/context";
 
 export default function Cart() {
  const {
@@ -8,7 +8,7 @@ export default function Cart() {
    removeFromCart, 
    clearCart, 
    getCartTotal 
- } = useContext(CartContext);
+ } = useContext(AppContext);
 
  return (
   <div>

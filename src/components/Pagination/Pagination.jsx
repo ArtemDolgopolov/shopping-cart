@@ -1,16 +1,9 @@
+import { useContext } from "react"
+import { AppContext } from "../../context/context"
 import './Pagination.css'
 
-export default function Pagination({ 
- productsLength,
- productsPerPage,
- handlePagination,
- page 
-}) {
- let paginationNumber = [];
-
- for (let i = 1; i <= Math.ceil(productsLength / productsPerPage); i++) {
-  paginationNumber.push(i);
- }
+export default function Pagination() {
+ const { page, paginationNumber, handlePagination } = useContext(AppContext);
 
  return (
   <div className='pagination'>
