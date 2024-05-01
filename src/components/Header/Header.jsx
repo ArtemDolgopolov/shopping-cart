@@ -2,6 +2,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from "../../context/context"
+import './Header.css'
 
 export default function Header() {
  const {
@@ -9,19 +10,21 @@ export default function Header() {
 } = useContext(AppContext);
 
  return (
-  <div className='header'>
+  <div className='header-wrapper'>
    <div className='header-logo-wrapper'>
-    <h1>Online Shop</h1>
+    <Link to='/' className='header-logo'>
+     All that shop 
+    </Link>
    </div>
    <div className='header-nav-wrapper'>
-    <button>
-     <Link to='/cart'>
-      <FaShoppingCart />
-      <span>{cartItems.reduce((total, item) => total + item.quantity, 0)}</span>
+    <button className='cart-button'>
+     <Link to='/cart' className='cart-link'>
+      <FaShoppingCart className='cart-icon' />
+      <span className='cart-counter'>{cartItems.reduce((total, item) => total + item.quantity, 0)}</span>
      </Link>
     </button>
-    <button>
-     <Link to='/shopping'>Go shopping</Link>
+    <button className='shopping-button'>
+     <Link to='/shopping' className='shopping-link'>Go shopping</Link>
     </button> 
    </div>
   </div>

@@ -1,3 +1,8 @@
 img {
     width: 25%;
 }
+
+.loader {
+    color: #000;
+    padding-top: 120px;
+}

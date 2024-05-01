@@ -1,4 +1,9 @@
-.active {
-    color: #fff;
-    background-color: #000;
+.page {
+    color: #000;
+}
+
+.page-active {
+    color: yellow;
+    background-color: #fc0fc0;
+    border-radius: 50%;
 }

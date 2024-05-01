@@ -7,21 +7,20 @@ export function AppProvider({ children }) {
   ? JSON.parse(localStorage.getItem('cartItems')) : []);
  const [products, setProducts] = useState([]);
  const [loading, setLoading] = useState(true);
- const [productsPerPage] = useState(5);
+ const [productsPerPage] = useState(3);
  const [page, setPage] = useState(1);
 
  const lastPage = page * productsPerPage;
  const firstPage = lastPage - productsPerPage;
  const currentsProducts = products.slice(firstPage, lastPage);
+ const totalPages = Math.ceil(products.length / productsPerPage);
 
- let paginationNumber = [];
-
- for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
-  paginationNumber.push(i);
+ const handlePrevPage = () => {
+  if (page > 1) setPage(page - 1);
  }
 
- const handlePagination = (pageNumber) => {
-  setPage(pageNumber);
+ const handleNextPage = () => {
+  if (lastPage < products.length) setPage(page + 1);
  }
 
  const getApiProducts = async () => {
@@ -68,7 +67,7 @@ export function AppProvider({ children }) {
  }
 
  function getCartTotal() {
-  return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
  }
 
  useEffect(() => {
@@ -96,9 +95,10 @@ export function AppProvider({ children }) {
     page,
     firstPage,
     lastPage,
-    paginationNumber,
+    handleNextPage,
+    handlePrevPage,
     currentsProducts,
-    handlePagination,
+    totalPages,
     cartItems,
     addToCart,
     removeFromCart,

@@ -3,19 +3,17 @@ import { AppContext } from "../../context/context"
 import './Pagination.css'
 
 export default function Pagination() {
- const { page, paginationNumber, handlePagination } = useContext(AppContext);
+ const { page, handleNextPage, handlePrevPage, totalPages } = useContext(AppContext);
 
  return (
-  <div className='pagination'>
-   {paginationNumber.map((number) => (
-    <button 
-      key={number} 
-      onClick={() => handlePagination(number)}
-      className={page === number ? 'active' : ''}
-    >
-      {number}
-    </button>
-   ))}
-  </div>
+  <div className="pagination">
+      <button className="prev" onClick={handlePrevPage} disabled={page === 1}>
+        Prev
+      </button>
+      <span className="page">{page}</span>
+      <button className="next" onClick={handleNextPage} disabled={page === totalPages}>
+        Next
+      </button>
+    </div>
  )
 }

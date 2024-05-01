@@ -8,15 +8,13 @@ export default function ShoppingPage() {
   const { loading } = useContext(AppContext);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='loader'>Loading...</div>;
   }
 
   return (
     <>
-      <div>
         <Products />
         {!loading && <Pagination />}
-      </div>
     </>
   );
 }
