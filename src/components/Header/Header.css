@@ -17,6 +17,10 @@
     align-items: center;
 }
 
+.header-nav-list {
+    display: flex;
+}
+
 .cart-button {
     display: flex;
     align-items: center;
@@ -54,7 +58,9 @@
 
 .cart-button:hover *,
 .shopping-button a:hover,
-.header-logo:hover {
+.header-logo:hover,
+.header-menu-button:hover,
+.header-menu-close:hover {
     color: #000;
     transition: color 0.3s ease;
 }
@@ -62,6 +68,59 @@
 .header-logo,
 .cart-icon,
 .cart-counter,
-.cart-link {
+.cart-link,
+.header-menu-button,
+.header-menu-close {
     color: yellow;
+}
+
+.header-menu-button,
+.header-menu-close {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-nav-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        position: fixed;
+        background-color: #fc0fc0;
+        width: 220px;
+        top: 0;
+        right: -225px;
+        border: 2px solid #fc0fc0;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        transition: transform 0.3s linear;
+    }
+
+    .header-nav-wrapper.active {
+        transform: translateX(-100%);
+    }
+
+    .header-nav-list {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding-top: 40px;
+    }
+
+    .header-menu-button {
+        display: block;
+        width: 1.5em;
+        height: 1.5em;
+        background-color: transparent;
+        margin-left: auto;
+        padding: 0;
+        border: 0;
+    }
+
+    .header-menu-close {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }

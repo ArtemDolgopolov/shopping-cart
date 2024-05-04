@@ -62,3 +62,13 @@
 .products button:hover {
     background-color: #ff473a;
 }
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .products {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .products > .product-card {
+        padding: 20px;
+    }
+}

@@ -9,6 +9,7 @@ export function AppProvider({ children }) {
  const [loading, setLoading] = useState(true);
  const [productsPerPage] = useState(3);
  const [page, setPage] = useState(1);
+ const [isOpen, setIsOpen] = useState(false);
 
  const lastPage = page * productsPerPage;
  const firstPage = lastPage - productsPerPage;
@@ -70,6 +71,10 @@ export function AppProvider({ children }) {
   return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
  }
 
+ function handleBurgerMenu() {
+  setIsOpen(!isOpen);
+ }
+
  useEffect(() => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
  }, [cartItems]);
@@ -103,7 +108,9 @@ export function AppProvider({ children }) {
     addToCart,
     removeFromCart,
     clearCart,
-    getCartTotal
+    getCartTotal,
+    isOpen,
+    handleBurgerMenu
    }}
   >
    {children}

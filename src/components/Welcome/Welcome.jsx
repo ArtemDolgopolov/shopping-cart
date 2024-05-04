@@ -20,7 +20,10 @@ export default function Welcome() {
        src='https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg' 
        alt='all-that' />
    </div>
-   <Link className='welcome-shopping-button' to='/shopping'>Start your journey</Link>
+   <div className='welcome-button-wrapper'>
+    <Link className='welcome-shopping-button' to='/shopping'>Start your journey</Link>
+   </div>
+   
    </>  
  )
 }

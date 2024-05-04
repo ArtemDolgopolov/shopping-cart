@@ -12,15 +12,14 @@ a {
     color: yellow;
     text-decoration: inherit;
 }
-/* a:hover {
-    color: yellowgreen;
-} */
 
 body {
     margin: 0;
     place-items: center;
     min-width: 320px;
-    height: 100%;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 h1 {

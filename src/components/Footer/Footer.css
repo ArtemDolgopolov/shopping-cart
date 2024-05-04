@@ -1,0 +1,16 @@
+.footer {
+    position: relative;
+    background-color: #fc0fc0;
+    color: yellow;
+    padding: 25px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer p {
+    margin: 5px;
+}
