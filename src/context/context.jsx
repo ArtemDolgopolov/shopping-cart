@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react"
+import { toast } from "react-toastify";
 
-export const AppContext = createContext();
+export const AppContext = createContext()
 
 export function AppProvider({ children }) {
  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') 
@@ -10,11 +11,33 @@ export function AppProvider({ children }) {
  const [productsPerPage] = useState(3);
  const [page, setPage] = useState(1);
  const [isOpen, setIsOpen] = useState(false);
+ const [searchQuery, setSearchQuery] = useState("");
+ const [searchQueryTemp, setSearchQueryTemp] = useState("");
+
 
  const lastPage = page * productsPerPage;
  const firstPage = lastPage - productsPerPage;
  const currentsProducts = products.slice(firstPage, lastPage);
- const totalPages = Math.ceil(products.length / productsPerPage);
+ const searchedProducts = searchProducts(searchQuery);
+ const totalPages = Math.ceil(searchedProducts.length / productsPerPage);
+ const currentSearchedProducts = searchedProducts.slice(
+  firstPage,
+  lastPage
+);
+
+ function searchProducts(query) {
+  return products.filter(product =>
+    product.title.toLowerCase().includes(query.toLowerCase())
+  );
+}
+
+const handleSearch = () => {
+ setSearchQuery(searchQueryTemp);
+};
+
+const handleSearchInputChange = (e) => {
+ setSearchQueryTemp(e.target.value);
+};
 
  const handlePrevPage = () => {
   if (page > 1) setPage(page - 1);
@@ -65,6 +88,7 @@ export function AppProvider({ children }) {
 
  function clearCart() {
   setCartItems([]);
+  toast('All products are checked out. But this is a fake store!')
  }
 
  function getCartTotal() {
@@ -74,6 +98,10 @@ export function AppProvider({ children }) {
  function handleBurgerMenu() {
   setIsOpen(!isOpen);
  }
+
+ // function notify() {
+ //   toast('All products are checked out. But this is a fake store!')
+ // }
 
  useEffect(() => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -110,7 +138,13 @@ export function AppProvider({ children }) {
     clearCart,
     getCartTotal,
     isOpen,
-    handleBurgerMenu
+    handleBurgerMenu,
+    currentSearchedProducts,
+    searchQuery,
+    setSearchQuery,
+    handleSearch,
+    searchQueryTemp,
+    handleSearchInputChange
    }}
   >
    {children}

@@ -7,6 +7,10 @@
     color: rgba(255, 255, 255, 0.87);
 }
 
+html {
+    height: 100%;
+}
+
 a {
     font-weight: 500;
     color: yellow;
@@ -15,11 +19,10 @@ a {
 
 body {
     margin: 0;
-    place-items: center;
-    min-width: 320px;
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
     overflow-x: hidden;
+    width: 100%;
 }
 
 h1 {
@@ -39,8 +42,4 @@ button {
     transition: border-color 0.25s;
     outline: none;
 }
-/* button:focus,
-button:focus-visible {
-    outline: none;
-} */
 

@@ -6,3 +6,21 @@ img {
     color: #000;
     padding-top: 120px;
 }
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.search-input {
+    font-family: "Rubik Bubbles", system-ui;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.search-button {
+    position: absolute;
+    left: 162px;
+    top: 50%;
+    transform: translateY(-44%);
+}

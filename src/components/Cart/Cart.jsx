@@ -1,5 +1,7 @@
 import { useContext } from "react"
 import { AppContext } from "../../context/context"
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './Cart.css'
 
 export default function Cart() {
@@ -13,6 +15,7 @@ export default function Cart() {
 
  return (
   <div className='cart'>
+   <ToastContainer />
    <h1 className='cart-header'>Cart</h1>
    {cartItems.map((item) => (
      <div className='cart-product' key={item.id}>

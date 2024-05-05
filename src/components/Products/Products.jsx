@@ -4,14 +4,14 @@ import { AppContext } from "../../context/context"
 import './Products.css'
 
 export default function Products() {
- const { addToCart, loading, products } = useContext(AppContext);
+ const { addToCart, loading, currentSearchedProducts } = useContext(AppContext);
  
  return (
   <div className='products'>
    {loading ? (
     <p>Loading...</p>
    ) : (
-    products.map((product) => (
+    currentSearchedProducts.map((product) => (
      <div key={product.id} className='product-card'>
       <Link to={`/shopping/${product.id}`}>
        <img src={product.image} alt={product.title} />
