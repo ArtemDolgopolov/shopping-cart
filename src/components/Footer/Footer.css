@@ -1,0 +1,19 @@
+.footer {
+    position: absolute;
+    width: calc(100% - 50px);
+    background-color: #fc0fc0;
+    color: yellow;
+    padding: 25px;
+    text-align: center;
+    bottom: 0;
+    height: 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer p {
+    margin: 5px;
+}
